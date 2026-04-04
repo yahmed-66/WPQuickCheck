@@ -125,12 +125,14 @@ def run_gowitness_file_scan(urls, gowitness_bin, screenshot_dir):
 if "__main__" == __name__:
     if len(sys.argv) < 2:
         # Dynamically get the script name
-        print(f"{Fore.CYAN}Usage: python {Path(sys.argv[0]).name} <url>{Style.RESET_ALL} <output-location>")
+        print(f"{Fore.CYAN}Usage: python3 {Path(sys.argv[0]).name} <url>{Style.RESET_ALL} <output-location>")
         sys.exit(1)
     # First Argument
     url = sys.argv[1]
     if len(sys.argv) == 2:
         output_location = '~'
+    else:
+        output_location = sys.argv[2]
     gowitness_bin = shutil.which("gowitness")
     if gowitness_bin:
         print(
@@ -241,18 +243,15 @@ if "__main__" == __name__:
                     found_misconfigs.append(f"{base_url}readme.html")
 
                 # Checking for user ID enumeration
-                print(f"{Fore.CYAN}{Style.BRIGHT}Checking for user ID enumeration (this might take some time, ^C to break){Style.RESET_ALL}")
+                print(f"{Fore.CYAN}{Style.BRIGHT}Checking for user ID enumeration (this might take some time...){Style.RESET_ALL}")
                 for user_id in range(1, 100):
-                    try:
-                        response = make_request(f"{base_url}?author={user_id}")
-                        if response.status_code == 200:
-                            print(
-                                f"{Fore.GREEN}User ID enumeration found:{Style.RESET_ALL} "
-                                f"{base_url}?author={user_id}",
-                            )
-                            found_misconfigs.append(f"{base_url}?author={user_id}")
-                            break
-                    except KeyboardInterrupt:
+                    response = make_request(f"{base_url}?author={user_id}")
+                    if response.status_code == 200:
+                        print(
+                            f"{Fore.GREEN}User ID enumeration found:{Style.RESET_ALL} "
+                            f"{base_url}?author={user_id}",
+                        )
+                        found_misconfigs.append(f"{base_url}?author={user_id}")
                         break
                 # Status message to user
                 if "author" not in found_misconfigs[-1]:
@@ -305,7 +304,7 @@ if "__main__" == __name__:
                     print(f"{Fore.LIGHTBLUE_EX}  {item}")
             if gowitness_bin and found_misconfigs:
                 print("Screenshotting findings with gowitness...")
-                out_dir = output_location / "gowitness-screenshots"
+                out_dir = Path(output_location) / "gowitness-screenshots"
                 run_gowitness_file_scan(found_misconfigs, gowitness_bin, out_dir)
 
     # Network error
