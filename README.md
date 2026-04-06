@@ -4,6 +4,8 @@
 
 A quick scanner that checks common misconfigurations for WordPress and screenshots them for use in pentesting reports.
 
+View the blog writeup [here](https://yahmedsec.com/blog/WPQuickScan).
+
 ## Quick start:
 
 ***Make sure you have GoWitness instaled***
