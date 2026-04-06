@@ -125,7 +125,7 @@ def run_gowitness_file_scan(urls, gowitness_bin, screenshot_dir):
 if "__main__" == __name__:
     if len(sys.argv) < 2:
         # Dynamically get the script name
-        print(f"{Fore.CYAN}Usage: python3 {Path(sys.argv[0]).name} <url>{Style.RESET_ALL} <output-location>")
+        print(f"{Fore.CYAN}Usage: python3 {Path(sys.argv[0]).name} <url> <output-location>{Style.RESET_ALL}")
         sys.exit(1)
     # First Argument
     url = sys.argv[1]
