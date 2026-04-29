@@ -299,8 +299,9 @@ if "__main__" == __name__:
                     print(f"{Fore.GREEN}User ID enumeration found:{Style.RESET_ALL} {base_url}?author={user_id}")
                     found_misconfigs.append(f"{base_url}?author={user_id}")
                     break
-            if "author" not in found_misconfigs[-1]:
-                print(f"{Fore.RED}User ID enumeration not found{Style.RESET_ALL}")
+            if found_misconfigs:
+                if "author" not in found_misconfigs[-1]:
+                    print(f"{Fore.RED}User ID enumeration not found{Style.RESET_ALL}")
 
             # Check xmlrpc.php
             print(f"{Fore.CYAN}{Style.BRIGHT}Checking xmlrpc.php...{Style.RESET_ALL}")
