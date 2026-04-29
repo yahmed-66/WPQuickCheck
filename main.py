@@ -302,6 +302,9 @@ if "__main__" == __name__:
             if found_misconfigs:
                 if "author" not in found_misconfigs[-1]:
                     print(f"{Fore.RED}User ID enumeration not found{Style.RESET_ALL}")
+            else:
+                print(f"{Fore.RED}User ID enumeration not found{Style.RESET_ALL}")
+
 
             # Check xmlrpc.php
             print(f"{Fore.CYAN}{Style.BRIGHT}Checking xmlrpc.php...{Style.RESET_ALL}")
