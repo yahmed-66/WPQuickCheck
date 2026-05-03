@@ -14,7 +14,7 @@ View the blog writeup [here](https://yahmedsec.com/blog/WPQuickScan).
 git clone https://github.com/yahmed-66/WPQuickCheck
 cd WPQuickCheck
 pip3 install -r requirements.txt
-python3 main.py ~/Desktop
+python3 main.py <URL> ~/Desktop
 ```
 
 ## Features
